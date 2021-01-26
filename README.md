@@ -1,3 +1,5 @@
-Ce projet est présenté dans le cadre du Défi des 100 jours de Ran.Données, organisé par l’AÉBINUM et IVADO. 
+### DÃ©fi des 100 jours de Ran.donnÃ©es
 
-Le thème analysé est la COVID19. La question que je me pose est peut-on prévoir la transmission de la COVID19 en fonction du PIB des pays et de la mobilité de la population.
+Ce projet est prÃ©sentÃ© dans le cadre du DÃ©fi des 100 jours de Ran.DonnÃ©es, organisÃ© par lâ€™AÃ‰BINUM et IVADO. 
+
+Le thÃ¨me analysÃ© est la COVID19. La question que je me pose est peut-on prÃ©voir la transmission de la COVID19 en fonction du PIB des pays et de la mobilitÃ© de sa population.
