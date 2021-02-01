@@ -26,13 +26,27 @@ dim(PIB)
 dim(GoogleMobility)
 dim(AppleMobility)
 
+#merge Apple with PIB
+PIB <- PIB[c("date","id","NY.GDP.PCAP.CD")]
+covid <- merge(AppleMobility,PIB, by=c("date","id"), sort = FALSE)
+
 #remplace na par 0
 numeric_cols <- colnames(covid)[sapply(covid, is.numeric)]
 character_cols <- colnames(covid)[sapply(covid, is.character)]
 covid[,numeric_cols][is.na(covid[,numeric_cols])] <- 0
 covid[,character_cols][is.na(covid[,character_cols])] <- ""
 
+#ajout colonne cas par M d'habitant
+covid$confirmed1M <- round(covid$confirmed / covid$population * 1000000, digits = 2)
 
+# Sommaire par pays
+sommaire <- aggregate(data.frame(Pays = covid$administrative_area_level_1, Confirmé_M = covid$confirmed1M, Population = covid$population, PIB = covid$NY.GDP.PCAP.CD), list(value = covid$id), max)
+
+sommaire <- sommaire[order(-sommaire$Confirmé_M),]
+sommaire$rangconfirme <- seq.int(nrow(sommaire))
+sommaire <- sommaire[order(sommaire$PIB),]
+sommaire$rangPIB <- seq.int(nrow(sommaire))
+sommaire <- sommaire[order(sommaire$value),]
 
 
 
