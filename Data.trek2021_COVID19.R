@@ -3,7 +3,7 @@
 
 #Peut-on prévoir la transmission de la COVID19 en fonction du PIB d'un pays et de la mobilité de sa population.
 
-#Données sur la covid19
+#Données sur la covid19 en format tibble (tidyverse)
 library(COVID19)
 covid <- covid19(level = 1)
 
@@ -27,6 +27,14 @@ dim(GoogleMobility)
 dim(AppleMobility)
 
 #remplace na par 0
-covid[, 1:24 ][is.na(covid[, 1:24])] <- 0
-covid[, 28:34][is.na(covid[, 28:34])] <- 0
+numeric_cols <- colnames(covid)[sapply(covid, is.numeric)]
+character_cols <- colnames(covid)[sapply(covid, is.character)]
+covid[,numeric_cols][is.na(covid[,numeric_cols])] <- 0
+covid[,character_cols][is.na(covid[,character_cols])] <- ""
+
+
+
+
+
+
 
